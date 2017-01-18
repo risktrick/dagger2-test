@@ -1,27 +1,30 @@
 package com.example.justtestapp;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity {
+
+    @Inject
+    Logger logger;
+
+    @Inject
+    Preferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        registerReceiver(broadcastReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
+        MainApplication.getComponent().inject(this);
+
+        logger.log(preferences.getHistory());
+        preferences.saveHistory("hello dagger2!");
+        logger.log(preferences.getHistory());
+
     }
 
 
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            finish();
-        }
-    };
 }
