@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         MainApplication.getComponent().inject(this);
 
         logger.log(preferences.getHistory());
-        preferences.saveHistory("hello dagger2!");
+        preferences.saveHistory("yeeee dagger2!");
         logger.log(preferences.getHistory());
 
     }

@@ -1,6 +1,7 @@
 package com.example.justtestapp;
 
 import android.app.Application;
+import android.util.Log;
 
 public class MainApplication extends Application {
 
